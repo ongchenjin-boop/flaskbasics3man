@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Word Analyser</title>
+	<meta charset="UTF-8">
+	<style>
+		body {
+		{% if '67' in text %}
+			background-color: orange;
+		{% elif 'asr' in text.lower() %}
+			background-color: teal;
+			color: orange;
+		{% else %}
+			background-color: gold;
+		{% endif %}
+		}
+
+	</style>
+</head>
+
+<body>
+	<h1>{% if "asr" in text.lower() %}
+	WELCOME TO ASR!!!!!!!! BEST JC 4EVA!!!!!! <br>
+	<img src="static/asrjc-logo.jpg" width="300px">
+	{% elif "cjc" in text.lower() %}
+	CJC!!!<br>
+	<img src="static/cjc-logo.jpg" width="300px">
+	{% elif "sajc" in text.lower() %}
+	WOW SAJC <br>
+	<img src="static/sajc-logo.jpg" width="300px">
+	{% elif "vjc" in text.lower() %}
+	VJC!! <br>
+	<img src="static/vjc-logo.jpg" width="300px">
+	{% endif %}
+	</h1>
+	<h1>Word Counter</h1>
+	<h2>Your text is {{ text }}, Length: {{ len_text }}</h2>
+	<h2>Vowels: {{ vowel_count }}</h2>
+	<h2>Consonants: {{ consonant_count }}</h2>
+	<h2>Letter Frequency: </h2>
+	<ul>
+	{% for letter, freq in letter_freq.items() %}
+		{% if freq == 1 %}
+		<li> {{ letter }} appeared once</li>
+		{% elif freq == 2 %}
+		<li> {{ letter }} appeared twice</li>
+		{% else %}
+		<li> {{ letter }} appeared {{ freq }} times</li>
+		{% endif %}
+	{% endfor %}
+	</ul>
+	<h2>Past Words: </h2>
+	<ul>
+	{% for word in past_words[::-1] %}
+		{% if word != 'favicon.ico' %}
+		<li>{{ word }}</li>
+		{% endif %}
+	{% endfor %}
+	</ul>
+</body>
+</html>
